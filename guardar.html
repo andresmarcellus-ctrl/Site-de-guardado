@@ -1,18 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
- <nav> 
-    <ul> 
-        <li> <h1> Seus Projetos salvos </h1>  </li>
+<title>CodeVault</title>
 
+<link rel="stylesheet" href="style.css">
+<header class="topo">
+    <div class="logo">
+        <span>&lt;/&gt;</span>
+        <h1>CodeVault</h1>
+    </div>
 
-    </ul>
- </nav>
-</html>
+    <p>Seu espaço para guardar e organizar seus códigos.</p>
+</header>
+
+<main class="container">
+
+    <section class="cabecalho-projetos">
+        <div>
+            <h2>Meus projetos</h2>
+            <p>Guarde, edite e acompanhe seus códigos.</p>
+        </div>
+
+        <button class="botao-adicionar" onclick="abrirModal()">
+            +
+        </button>
+    </section>
+
+    <section id="listaProjetos" class="projetos">
+        <!-- Os projetos serão criados pelo JavaScript -->
+    </section>
+
+</main>
+
+<!-- MODAL PARA CRIAR PROJETO -->
+
+<div id="modal" class="modal">
+    <div class="modal-conteudo">
+
+        <button class="fechar" onclick="fecharModal()">×</button>
+
+        <h2>Novo projeto</h2>
+        <p>Crie uma nova pasta para armazenar seu código.</p>
+
+        <label for="titulo">Título do projeto</label>
+        <input
+            type="text"
+            id="titulo"
+            placeholder="Ex: Sistema de Biblioteca"
+        >
+
+        <label for="descricao">Descrição</label>
+        <textarea
+            id="descricao"
+            placeholder="Descreva brevemente seu projeto..."
+        ></textarea>
+
+        <label for="codigo">Código</label>
+        <textarea
+            id="codigo"
+            class="editor"
+            placeholder="Cole ou escreva seu código aqui..."
+        ></textarea>
+
+        <button class="botao-salvar" onclick="criarProjeto()">
+            Criar projeto
+        </button>
+
+    </div>
+</div>
+
+<!-- MODAL PARA VISUALIZAR / EDITAR PROJETO -->
+
+<div id="modalEditor" class="modal">
+    <div class="modal-conteudo editor-modal">
+
+        <button class="fechar" onclick="fecharEditor()">×</button>
+
+        <h2 id="editorTitulo"></h2>
+
+        <p id="editorDescricao"></p>
+
+        <label for="codigoEditor">Código</label>
+
+        <textarea
+            id="codigoEditor"
+            class="editor"
+        ></textarea>
+
+        <div class="acoes-editor">
+
+            <button class="botao-secundario" onclick="fecharEditor()">
+                Fechar
+            </button>
+
+            <button class="botao-salvar" onclick="salvarVersao()">
+                Salvar nova versão
+            </button>
+
+        </div>
+
+        <div class="historico">
+            <h3>Histórico de versões</h3>
+
+            <div id="listaVersoes"></div>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+

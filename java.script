@@ -1,0 +1,67 @@
+localStorage.setItem(
+    "projetos",
+    JSON.stringify(projetos)
+);
+const lista = document.getElementById("listaProjetos");
+
+lista.innerHTML = "";
+
+if (projetos.length === 0) {
+
+    lista.innerHTML = `
+        <p style="
+            color:#9ca3af;
+            grid-column:1/-1;
+            text-align:center;
+            padding:50px;
+        ">
+            Nenhum projeto criado ainda.<br>
+            Clique no botão + para começar.
+        </p>
+    `;
+
+    return;
+}
+
+
+projetos.forEach((projeto, index) => {
+
+    const card = document.createElement("div");
+
+    card.className = "projeto";
+
+    card.onclick = () => abrirProjeto(index);
+
+
+    card.innerHTML = `
+
+        <div class="projeto-cabecalho">
+
+            <span class="icone-pasta">📁</span>
+
+            <h3>${escaparHTML(projeto.titulo)}</h3>
+
+        </div>
+
+        <p class="projeto-descricao">
+            ${escaparHTML(projeto.descricao)}
+        </p>
+
+        <div class="projeto-info">
+
+            Última visualização:
+            ${formatarData(projeto.ultimaVisualizacao)}
+
+            <br>
+
+            Versão:
+            ${projeto.versoes.length}
+
+        </div>
+
+    `;
+
+
+    lista.appendChild(card);
+
+});
